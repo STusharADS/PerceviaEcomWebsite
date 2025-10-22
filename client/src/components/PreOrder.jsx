@@ -1,0 +1,64 @@
+import { useState } from 'react';
+
+export default function PreOrder() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [qty, setQty] = useState(1);
+  const [status, setStatus] = useState({ loading: false, success: null, message: '' });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ loading: true, success: null, message: '' });
+
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const res = await fetch(`${apiUrl}/api/preorders`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, qty })
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setStatus({ loading: false, success: true, message: data.message || 'Preorder saved' });
+        setName(''); setEmail(''); setPhone(''); setQty(1);
+      } else {
+        setStatus({ loading: false, success: false, message: data.message || 'Error' });
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus({ loading: false, success: false, message: 'Network error' });
+    }
+  }
+
+  return (
+    <section id="pre-order" className="py-20 px-6 max-w-4xl mx-auto text-center">
+      <h2 className="text-3xl font-bold mb-4">Pre-order Percevia (Smart Glasses for the Completely Blind)</h2>
+      <p className="mb-6">Percevia is built specifically for people who are completely blind — the glasses work together with a companion phone app (also designed for blind users) to provide environmental understanding, haptic collision warnings, facial recognition, and on-demand scene descriptions.</p>
+
+      <div className="mb-6">
+        <strong>Estimated first-run price:</strong> ₹10,000 - ₹15,000 (target). Limited first-run pre-orders will be available.
+      </div>
+
+      {status.success ? (
+        <div className="bg-white/6 p-6 rounded-lg text-white">Thanks! Your pre-order request has been received. We'll contact you at the email you provided with next steps.</div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
+          <input required value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Full name" className="w-full p-3 rounded-md bg-white text-black placeholder-gray-500" aria-label="name" />
+          <input required value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Your email" className="w-full p-3 rounded-md bg-white text-black placeholder-gray-500" aria-label="email" />
+          <input required value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" placeholder="Phone number" className="w-full p-3 rounded-md bg-white text-black placeholder-gray-500" aria-label="phone" />
+          <div className="flex gap-2 justify-center">
+            <label className="flex items-center gap-2 text-white">Qty
+              <input required min={1} max={10} value={qty} onChange={(e) => setQty(Number(e.target.value))} type="number" className="w-20 p-2 rounded-md bg-white text-black ml-2" aria-label="quantity" />
+            </label>
+          </div>
+          <div className="flex justify-center">
+            <button disabled={status.loading} className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors">{status.loading ? 'Submitting...' : 'Request Pre-order'}</button>
+          </div>
+          {status.success === false && <div className="text-red-400 mt-2">{status.message}</div>}
+        </form>
+      )}
+    </section>
+  );
+}
