@@ -19,24 +19,19 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2 text-white text-xl font-bold">
-              <img src="/hello.png" alt="Percevia Logo" className="h-8 w-8" />
+              <img src="/hello.png" alt="Percevia Logo" className="h-8 w-8 rounded-full object-cover" />
               Percevia
             </Link>
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              <a href="#pre-order" onClick={(e) => scrollToSection(e, 'pre-order')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
-                Pre-order
-              </a>
-              <a href="#specs" onClick={(e) => scrollToSection(e, 'specs')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
-                Specifications
-              </a>
-              <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
-                FAQ
-              </a>
-              <a href="#download" onClick={(e) => scrollToSection(e, 'download')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
-                Download App
-              </a>
+              <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">About</a>
+              <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Features</a>
+              <a href="#specs" onClick={(e) => scrollToSection(e, 'specs')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Specifications</a>
+              <a href="#demo" onClick={(e) => scrollToSection(e, 'demo')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Demo</a>
+              <a href="#download" onClick={(e) => scrollToSection(e, 'download')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Download</a>
+              <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">FAQ</a>
+              <a href="#pre-order" onClick={(e) => scrollToSection(e, 'pre-order')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Pre-order</a>
             </div>
           </div>
           <div className="md:hidden">
@@ -62,18 +57,13 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#pre-order" onClick={(e) => scrollToSection(e, 'pre-order')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">
-              Pre-order
-            </a>
-            <a href="#specs" onClick={(e) => scrollToSection(e, 'specs')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">
-              Specifications
-            </a>
-            <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">
-              FAQ
-            </a>
-            <a href="#download" onClick={(e) => scrollToSection(e, 'download')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">
-              Download App
-            </a>
+            <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">About</a>
+            <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Features</a>
+            <a href="#specs" onClick={(e) => scrollToSection(e, 'specs')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Specifications</a>
+            <a href="#demo" onClick={(e) => scrollToSection(e, 'demo')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Demo</a>
+            <a href="#download" onClick={(e) => scrollToSection(e, 'download')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Download</a>
+            <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">FAQ</a>
+            <a href="#pre-order" onClick={(e) => scrollToSection(e, 'pre-order')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Pre-order</a>
           </div>
         </div>
       )}

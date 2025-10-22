@@ -42,13 +42,15 @@ export default function Hero({ timeLeft }) {
 
       {/* Content */}
       <div ref={ref} className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
+        {/* Liquid glass Percevia */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-bold mb-6"
+          className="liquid-glass text-6xl md:text-8xl"
+          style={{ marginBottom: '24px' }}
         >
-          Percevia
+          PERCEVIA
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}

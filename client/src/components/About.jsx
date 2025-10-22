@@ -2,80 +2,47 @@ export default function About(){
   return (
     <section id="about" className="py-20 px-6 bg-white/5 text-white">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-6">Why Percevia?</h2>
-        
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
-          <div>
-            <p className="text-lg mb-6">Percevia is a sophisticated, AI-powered smart glasses system designed exclusively for people who are <strong>completely blind</strong>. It combines hardware and software to restore a sense of sight through audio and sensory feedback.</p>
-            
-            <h3 className="text-xl font-semibold mb-3">What Makes Us Different</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400">•</span>
-                <span><strong>Built exclusively for the completely blind</strong> for an uncompromised experience</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400">•</span>
-                <span><strong>Manufacturing cost just ₹6000</strong> - unlocking mass accessibility (retail target: ₹10-15k)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400">•</span>
-                <span><strong>90% more affordable</strong> than competitors (Envision ₹2.5L, OrCam ₹2L+)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400">•</span>
-                <span><strong>Ideal for government schemes</strong> - price point enables large-scale deployment</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400">•</span>
-                <span><strong>12 hours battery life</strong> - industry-leading continuous power with smart frame design</span>
-              </li>
-            </ul>
-          </div>
+  <h2 className="text-3xl font-bold mb-6 heading-accent neon">About Percevia</h2>
+        <p className="text-lg mb-8">Percevia are AI-powered smart glasses built specifically for people who are <strong>completely blind</strong>. Simple to use, affordable, and designed for everyday independence.</p>
 
-          <div>
-            <h3 className="text-xl font-semibold mb-3">Social Impact</h3>
-            <div className="bg-white/6 p-6 rounded-lg mb-4">
-              <p className="text-cyan-400 text-3xl font-bold mb-2">5:1 Social ROI</p>
-              <p className="text-sm">For every ₹1 invested, ₹5 of tangible social value is created through employment, education, reduced inequalities, security, and independence.</p>
+        <ul className="grid md:grid-cols-2 gap-4">
+          <li className="flex items-start gap-3 bg-white/6 p-4 rounded-lg">
+            <span aria-hidden className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan-500/20 text-cyan-400">{/* eye icon */}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </span>
+            <div>
+              <div className="font-semibold">Understands your surroundings</div>
+              <p className="text-sm text-gray-200">Objects, faces, text, currency, and more — spoken clearly.</p>
             </div>
-            
-            <h3 className="text-xl font-semibold mb-3">Target Market</h3>
-            <ul className="space-y-2 text-sm">
-              <li><strong>43 Million</strong> completely blind individuals globally</li>
-              <li><strong>1 Billion</strong> with low vision</li>
-              <li>India has <strong>one-fifth</strong> of the world's blind population</li>
-              <li>Blind population projected to <strong>triple by 2050</strong></li>
-              <li><strong>In next 6 months:</strong> Aiming to change {'>'}100 lives</li>
-            </ul>
-          </div>
-        </div>
-
-        <h3 className="text-xl font-semibold mb-3">Recognition & Partnerships</h3>
-        <ul className="grid md:grid-cols-2 gap-3 mb-6 text-sm">
-          <li className="flex items-start gap-2"><span className="text-cyan-400">✓</span> Top 20 finalist - Samsung Solve for Tomorrow (20,000+ applicants)</li>
-          <li className="flex items-start gap-2"><span className="text-cyan-400">✓</span> Featured in Financial Express</li>
-          <li className="flex items-start gap-2"><span className="text-cyan-400">✓</span> Praised by Vinay Sir (Vedantu)</li>
-          <li className="flex items-start gap-2"><span className="text-cyan-400">✓</span> Incubated at Scaler Innovation Lab (SIL)</li>
-          <li className="flex items-start gap-2"><span className="text-cyan-400">✓</span> Partnered with SRMAB & Sri Rakum School for pilot testing</li>
-          <li className="flex items-start gap-2"><span className="text-cyan-400">✓</span> Interviewed 100s of blind kids and adults for feedback</li>
+          </li>
+          <li className="flex items-start gap-3 bg-white/6 p-4 rounded-lg">
+            <span aria-hidden className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan-500/20 text-cyan-400">{/* grid icon */}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </span>
+            <div>
+              <div className="font-semibold">9‑grid spatial guidance</div>
+              <p className="text-sm text-gray-200">Precise left/right/top/bottom audio cues for easy navigation.</p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3 bg-white/6 p-4 rounded-lg">
+            <span aria-hidden className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan-500/20 text-cyan-400">{/* shield icon */}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+            </span>
+            <div>
+              <div className="font-semibold">Private & offline</div>
+              <p className="text-sm text-gray-200">Processing happens on your phone — no cloud required.</p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3 bg-white/6 p-4 rounded-lg">
+            <span aria-hidden className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan-500/20 text-cyan-400">{/* battery icon */}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="18" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/></svg>
+            </span>
+            <div>
+              <div className="font-semibold">All‑day battery</div>
+              <p className="text-sm text-gray-200">Up to 12 hours on a single charge.</p>
+            </div>
+          </li>
         </ul>
-
-        <h3 className="text-xl font-semibold mb-3">Roadmap & Funding</h3>
-        <div className="grid md:grid-cols-3 gap-4 text-sm">
-          <div className="bg-white/6 p-4 rounded-lg">
-            <h4 className="font-semibold mb-2">Q3 2025</h4>
-            <p>R&D, model improvements, secure ₹25L grant from Samsung competition</p>
-          </div>
-          <div className="bg-white/6 p-4 rounded-lg">
-            <h4 className="font-semibold mb-2">Q4 2025 - Q1 2026</h4>
-            <p>Injection molding (₹2.5L onetime + ₹400/unit), PCB manufacturing with JLCPCB - transition to scalable production</p>
-          </div>
-          <div className="bg-white/6 p-4 rounded-lg">
-            <h4 className="font-semibold mb-2">Q1-Q2 2026</h4>
-            <p>Pilot with blind schools, market launch targeting schools, B2C customers, and government schemes</p>
-          </div>
-        </div>
       </div>
     </section>
   )

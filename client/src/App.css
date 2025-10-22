@@ -2,6 +2,7 @@
 :root{
 	--bg: #000;
 	--muted: rgba(255,255,255,0.7);
+	--accent: #00D3F2;
 }
 
 html,body,#root{
@@ -49,4 +50,32 @@ body{
 .backdrop-blur-sm{backdrop-filter: blur(4px)}
 
 button{cursor:pointer}
+
+/* Accent heading color */
+.heading-accent{color: var(--accent)}
+
+/* Futuristic neon glow */
+.neon{ text-shadow: 0 0 8px rgba(0,211,242,0.6), 0 0 18px rgba(0,211,242,0.3) }
+
+/* Apple Glass-style script for hero */
+.hello-script{ font-family: 'Pacifico', cursive; letter-spacing: 0.5px }
+.hello-outline{-webkit-text-stroke: 1px rgba(255,255,255,0.3); color: var(--accent) }
+
+/* Liquid glass effect for Percevia title */
+.liquid-glass {
+  background: linear-gradient(135deg, rgba(0,211,242,0.15), rgba(255,255,255,0.05));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 40px rgba(0,211,242,0.4), 0 0 80px rgba(0,211,242,0.2);
+  border: 2px solid rgba(0,211,242,0.3);
+  padding: 12px 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  font-weight: 300;
+  letter-spacing: 8px;
+}
+
+/* Glassmorphism card */
+.glass-card{ background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(6px); border-radius: 12px }
 

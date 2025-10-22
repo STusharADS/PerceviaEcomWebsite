@@ -34,7 +34,7 @@ export default function PreOrder() {
 
   return (
     <section id="pre-order" className="py-20 px-6 max-w-4xl mx-auto text-center">
-      <h2 className="text-3xl font-bold mb-4">Pre-order Percevia (Smart Glasses for the Completely Blind)</h2>
+      <h2 className="text-3xl font-bold mb-4 heading-accent neon">Pre-order Percevia (Smart Glasses for the Completely Blind)</h2>
       <p className="mb-6">Percevia is built specifically for people who are completely blind — the glasses work together with a companion phone app (also designed for blind users) to provide environmental understanding, haptic collision warnings, facial recognition, and on-demand scene descriptions.</p>
 
       <div className="mb-6">
@@ -45,16 +45,16 @@ export default function PreOrder() {
         <div className="bg-white/6 p-6 rounded-lg text-white">Thanks! Your pre-order request has been received. We'll contact you at the email you provided with next steps.</div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
-          <input required value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Full name" className="w-full p-3 rounded-md bg-white text-black placeholder-gray-500" aria-label="name" />
-          <input required value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Your email" className="w-full p-3 rounded-md bg-white text-black placeholder-gray-500" aria-label="email" />
-          <input required value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" placeholder="Phone number" className="w-full p-3 rounded-md bg-white text-black placeholder-gray-500" aria-label="phone" />
+          <input required value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Full name" className="w-full p-3 rounded-md text-white placeholder-gray-400" style={{background: '#3a3a3c', border: '1px solid #48484a'}} aria-label="name" />
+          <input required value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Your email" className="w-full p-3 rounded-md text-white placeholder-gray-400" style={{background: '#3a3a3c', border: '1px solid #48484a'}} aria-label="email" />
+          <input required value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" placeholder="Phone number" className="w-full p-3 rounded-md text-white placeholder-gray-400" style={{background: '#3a3a3c', border: '1px solid #48484a'}} aria-label="phone" />
           <div className="flex gap-2 justify-center">
             <label className="flex items-center gap-2 text-white">Qty
-              <input required min={1} max={10} value={qty} onChange={(e) => setQty(Number(e.target.value))} type="number" className="w-20 p-2 rounded-md bg-white text-black ml-2" aria-label="quantity" />
+              <input required min={1} max={10} value={qty} onChange={(e) => setQty(Number(e.target.value))} type="number" className="w-20 p-2 rounded-md text-white ml-2" style={{background: '#3a3a3c', border: '1px solid #48484a'}} aria-label="quantity" />
             </label>
           </div>
           <div className="flex justify-center">
-            <button disabled={status.loading} className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors">{status.loading ? 'Submitting...' : 'Request Pre-order'}</button>
+            <button disabled={status.loading} className="px-6 py-3 rounded-full font-semibold transition-colors" style={{background: '#3a3a3c', color: '#fff', border: '1px solid #48484a'}} onMouseEnter={(e) => e.currentTarget.style.background = '#48484a'} onMouseLeave={(e) => e.currentTarget.style.background = '#3a3a3c'}>{status.loading ? 'Submitting...' : 'Request Pre-order'}</button>
           </div>
           {status.success === false && <div className="text-red-400 mt-2">{status.message}</div>}
         </form>

@@ -10,7 +10,7 @@ export default function FAQ(){
   return (
     <section id="faq" className="py-20 px-6">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-6">FAQ</h2>
+        <h2 className="text-3xl font-bold mb-6 heading-accent neon">FAQ</h2>
         <div className="space-y-4">
           {faqs.map((f, i) => (
             <details key={i} className="bg-white/6 p-4 rounded-lg">
