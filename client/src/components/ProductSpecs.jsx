@@ -1,6 +1,6 @@
 export default function ProductSpecs(){
   return (
-    <section id="specs" className="py-20 px-6 bg-black text-white">
+  <section id="specs" className="py-20 px-6 bg-black text-white">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold mb-6 text-center heading-accent neon">Specifications</h2>
         

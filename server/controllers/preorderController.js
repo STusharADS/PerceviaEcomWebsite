@@ -2,12 +2,12 @@ import Preorder from '../models/Preorder.js';
 
 export const createPreorder = async (req, res) => {
   try {
-    const { name, email, phone, qty } = req.body;
-    if (!name || !email || !phone) {
-      return res.status(400).json({ message: 'name, email and phone are required' });
+    const { name, email, phone, qty, age, city } = req.body;
+    if (!name || !email || !phone || !age || !city) {
+      return res.status(400).json({ message: 'name, email, phone, age and city are required' });
     }
 
-    const preorder = new Preorder({ name, email, phone, qty: qty || 1 });
+    const preorder = new Preorder({ name, email, phone, qty: qty || 1, age: Number(age), city: String(city) });
     await preorder.save();
 
     return res.status(201).json({ message: 'Preorder saved', preorder });

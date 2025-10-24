@@ -7,7 +7,8 @@ const router = express.Router();
 // GET /api/admin/preorders
 router.get('/preorders', requireAuth, requireAdmin, async (req, res) => {
   try {
-    const items = await Preorder.find().sort({ createdAt: -1 });
+    // return unprocessed orders first, then processed; newest first within each group
+    const items = await Preorder.find().sort({ processed: 1, createdAt: -1 });
     res.json(items);
   } catch (err) {
     console.error(err);
@@ -15,7 +16,19 @@ router.get('/preorders', requireAuth, requireAdmin, async (req, res) => {
   }
 });
 
-// (processed / toggle functionality removed)
+// PATCH /api/admin/preorders/:id - toggle processed state
+router.patch('/preorders/:id', requireAuth, requireAdmin, async (req, res) => {
+  try {
+    const p = await Preorder.findById(req.params.id);
+    if (!p) return res.status(404).json({ message: 'not found' });
+    p.processed = !p.processed;
+    await p.save();
+    res.json({ message: 'updated', preorder: p });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'server error' });
+  }
+});
 
 // DELETE /api/admin/preorders/:id - delete preorder
 router.delete('/preorders/:id', requireAuth, requireAdmin, async (req, res) => {

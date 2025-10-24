@@ -8,7 +8,7 @@ export default function FAQ(){
   ];
 
   return (
-    <section id="faq" className="py-20 px-6">
+    <section id="faq" className="py-20 px-6 bg-black">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-3xl font-bold mb-6 heading-accent neon">FAQ</h2>
         <div className="space-y-4">

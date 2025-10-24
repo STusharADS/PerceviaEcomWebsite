@@ -47,7 +47,7 @@ export default function Download(){
   }, [])
 
   return (
-    <section id="download" className="py-20 px-6 bg-white/5">
+    <section id="download" className="py-20 px-6 bg-[#0D0D0D]">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
         <div>
           <h2 className="text-3xl font-bold mb-13 heading-accent neon">Download App</h2>

@@ -23,6 +23,18 @@ export default function Hero({ timeLeft }) {
     }
   }, [inView]);
 
+  // Try to start the hero video muted on first mount to improve autoplay reliability
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    try {
+      v.muted = true;
+      v.play().catch(() => {
+        // ignore failures; intersection observer will control playback later
+      });
+    } catch (e) {}
+  }, []);
+
   return (
     <div className="relative h-screen">
       {/* Video Background */}

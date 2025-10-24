@@ -39,7 +39,7 @@ export default function KeyFeatures(){
   ]
 
   return (
-    <section id="features" className="py-20 px-6">
+    <section id="features" className="py-20 px-6 bg-black">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold mb-6 heading-accent neon">Key Features</h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">

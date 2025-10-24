@@ -5,6 +5,8 @@ export default function PreOrder() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [qty, setQty] = useState(1);
+  const [age, setAge] = useState('');
+  const [city, setCity] = useState('');
   const [status, setStatus] = useState({ loading: false, success: null, message: '' });
 
   const handleSubmit = async (e) => {
@@ -16,13 +18,13 @@ export default function PreOrder() {
       const res = await fetch(`${apiUrl}/api/preorders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone, qty })
+        body: JSON.stringify({ name, email, phone, qty, age, city })
       });
 
       const data = await res.json();
       if (res.ok) {
         setStatus({ loading: false, success: true, message: data.message || 'Preorder saved' });
-        setName(''); setEmail(''); setPhone(''); setQty(1);
+        setName(''); setEmail(''); setPhone(''); setQty(1); setAge(''); setCity('');
       } else {
         setStatus({ loading: false, success: false, message: data.message || 'Error' });
       }
@@ -33,12 +35,16 @@ export default function PreOrder() {
   }
 
   return (
-    <section id="pre-order" className="py-20 px-6 max-w-4xl mx-auto text-center">
-      <h2 className="text-3xl font-bold mb-4 heading-accent neon">Pre-order Percevia (Smart Glasses for the Completely Blind)</h2>
-      <p className="mb-6">Percevia is built specifically for people who are completely blind — the glasses work together with a companion phone app (also designed for blind users) to provide environmental understanding, haptic collision warnings, facial recognition, and on-demand scene descriptions.</p>
+  <section id="pre-order" className="py-20 px-6 max-w-4xl mx-auto text-center bg-[#0D0D0D]">
+      <h2 className="text-3xl font-bold mb-4 heading-accent neon">Pre order</h2>
 
       <div className="mb-6">
-        <strong>Estimated first-run price:</strong> ₹10,000 - ₹15,000 (target). Limited first-run pre-orders will be available.
+        <div className="max-w-md mx-auto bg-white/5 p-4 rounded-lg">
+          <div className="text-sm text-white mb-2">Initial retail price</div>
+          <div className="text-2xl text-gray-300 line-through">₹11,999</div>
+          <div className="text-lg text-cyan-300 font-bold">Pre-order price: ₹8,999</div>
+          <div className="text-xs text-gray-400 mt-2">Limited first-run pre-orders get the special pre-order price.</div>
+        </div>
       </div>
 
       {status.success ? (
@@ -48,6 +54,12 @@ export default function PreOrder() {
           <input required value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Full name" className="w-full p-3 rounded-md text-white placeholder-gray-400" style={{background: '#3a3a3c', border: '1px solid #48484a'}} aria-label="name" />
           <input required value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Your email" className="w-full p-3 rounded-md text-white placeholder-gray-400" style={{background: '#3a3a3c', border: '1px solid #48484a'}} aria-label="email" />
           <input required value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" placeholder="Phone number" className="w-full p-3 rounded-md text-white placeholder-gray-400" style={{background: '#3a3a3c', border: '1px solid #48484a'}} aria-label="phone" />
+
+          <div className="flex gap-2">
+            <input required value={age} onChange={(e) => setAge(e.target.value)} type="number" min={1} max={120} placeholder="Age" className="w-1/2 p-3 rounded-md text-white placeholder-gray-400" style={{background: '#3a3a3c', border: '1px solid #48484a'}} aria-label="age" />
+            <input required value={city} onChange={(e) => setCity(e.target.value)} type="text" placeholder="City" className="w-1/2 p-3 rounded-md text-white placeholder-gray-400" style={{background: '#3a3a3c', border: '1px solid #48484a'}} aria-label="city" />
+          </div>
+
           <div className="flex gap-2 justify-center">
             <label className="flex items-center gap-2 text-white">Qty
               <input required min={1} max={10} value={qty} onChange={(e) => setQty(Number(e.target.value))} type="number" className="w-20 p-2 rounded-md text-white ml-2" style={{background: '#3a3a3c', border: '1px solid #48484a'}} aria-label="quantity" />

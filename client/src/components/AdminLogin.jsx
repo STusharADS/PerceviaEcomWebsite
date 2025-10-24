@@ -25,8 +25,10 @@ export default function AdminLogin(){
       <form onSubmit={submit} className="bg-white/5 p-6 rounded-lg w-full max-w-md">
         <h2 className="text-xl font-bold mb-4">Admin Login</h2>
         {err && <div className="text-red-400 mb-2">{err}</div>}
-        <input value={email} onChange={(e)=>setEmail(e.target.value)} className="w-full p-3 rounded mb-2" />
-        <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" className="w-full p-3 rounded mb-4" />
+        <label className="block text-sm mb-1 text-white">Email</label>
+        <input value={email} onChange={(e)=>setEmail(e.target.value)} className="w-full p-3 rounded mb-2 text-white placeholder-gray-400 bg-[#222]" style={{caretColor:'#fff'}} />
+        <label className="block text-sm mb-1 text-white">Password</label>
+        <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" className="w-full p-3 rounded mb-4 text-white placeholder-gray-400 bg-[#222]" style={{caretColor:'#fff'}} />
         <div className="flex justify-end">
           <button className="px-4 py-2 bg-white/10 rounded">Sign in</button>
         </div>

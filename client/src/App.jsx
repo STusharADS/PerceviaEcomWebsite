@@ -12,6 +12,7 @@ import FAQ from './components/FAQ'
 import PreOrder from './components/PreOrder'
 import AdminLogin from './components/AdminLogin'
 import AdminDashboard from './components/AdminDashboard'
+import UserAuth from './components/UserAuth'
 
 function App() {
   const bgAudioRef = useRef(null)
@@ -91,14 +92,15 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/login" element={<UserAuth />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/" element={
             <>
               <Hero timeLeft={timeLeft} />
               <About />
-              <KeyFeatures />
-              <RealLifeDemo />
               <ProductSpecs />
+              <RealLifeDemo />
+              <KeyFeatures />
               <Download />
               <FAQ />
               <PreOrder />
