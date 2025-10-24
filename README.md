@@ -17,7 +17,7 @@ This repository contains the source for the Percevia e-commerce landing and preo
 
 
 
-This README explains how the project is organized, how to run it locally, the environment variables required, and deployment notes.
+The project also includes an app made using Flutter Dart for the completely blind individuals.
 
 ## Tech stack
 
@@ -152,6 +152,7 @@ If you'd like, I can also:
 - Add a sample `.env.local` for the frontend to demonstrate `VITE_API_URL` usage.
 
 Tell me if you want the README adjusted (tone, length, or additional sections) and I will update it.
+
 
 
 
