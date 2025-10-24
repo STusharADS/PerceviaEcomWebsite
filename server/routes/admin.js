@@ -1,5 +1,6 @@
 import express from 'express';
 import Preorder from '../models/Preorder.js';
+import User from '../models/User.js';
 import { requireAuth, requireAdmin } from '../middlewares/auth.js';
 
 const router = express.Router();
@@ -43,4 +44,17 @@ router.delete('/preorders/:id', requireAuth, requireAdmin, async (req, res) => {
   }
 });
 
+// GET /api/admin/users - recent registered users (exclude password hashes)
+router.get('/users', requireAuth, requireAdmin, async (req, res) => {
+  try {
+    // return latest 50 users, newest first. omit passwordHash
+    const users = await User.find({}, { passwordHash: 0 }).sort({ createdAt: -1 }).limit(50);
+    res.json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'server error' });
+  }
+});
+
 export default router;
+

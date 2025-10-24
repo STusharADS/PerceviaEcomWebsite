@@ -6,6 +6,7 @@ function getToken(){
 
 export default function AdminDashboard(){
   const [items, setItems] = useState([]);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(new Set());
 
@@ -21,7 +22,18 @@ export default function AdminDashboard(){
     setLoading(false);
   }
 
+  const fetchUsers = async () => {
+    try{
+      const base = import.meta.env.VITE_API_URL || '';
+      const res = await fetch(`${base}/api/admin/users`, { headers: { Authorization: `Bearer ${getToken()}` } });
+      if (!res.ok) throw new Error('auth');
+      const data = await res.json();
+      setUsers(data);
+    }catch(e){ console.error('fetch users', e); setUsers([]); }
+  }
+
   useEffect(()=>{ fetchList() }, []);
+  useEffect(()=>{ fetchUsers() }, []);
 
   const remove = async (id) => {
     try{
@@ -160,6 +172,23 @@ export default function AdminDashboard(){
                     </div>
                   )
                 })()}
+              </div>
+            </div>
+          )}
+          {/* Recent users panel */}
+          {users.length > 0 && (
+            <div className="mb-6 bg-white/5 p-4 rounded">
+              <h3 className="font-semibold mb-3">Recent registered users</h3>
+              <div className="space-y-2">
+                {users.map(u => (
+                  <div key={u._id} className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm font-medium">{u.name || '—'}</div>
+                      <div className="text-xs text-gray-300">{u.email} • {new Date(u.createdAt).toLocaleString()}</div>
+                    </div>
+                    <div className="text-xs text-gray-300">{u.role || 'user'}</div>
+                  </div>
+                ))}
               </div>
             </div>
           )}
