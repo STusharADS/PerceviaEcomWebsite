@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith('/admin');
 
   const scrollToSection = (e, sectionId) => {
     e.preventDefault();
@@ -24,15 +26,21 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">About</a>
-              <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Features</a>
-              <a href="#specs" onClick={(e) => scrollToSection(e, 'specs')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Specifications</a>
-              <a href="#demo" onClick={(e) => scrollToSection(e, 'demo')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Demo</a>
-              <a href="#download" onClick={(e) => scrollToSection(e, 'download')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Download</a>
-              <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">FAQ</a>
-              <a href="#pre-order" onClick={(e) => scrollToSection(e, 'pre-order')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Pre-order</a>
-            </div>
+            {isAdmin ? (
+              <div className="ml-10">
+                <h2 className="text-white text-lg font-semibold">Admin Dashboard</h2>
+              </div>
+            ) : (
+              <div className="ml-10 flex items-baseline space-x-4">
+                <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">About</a>
+                <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Features</a>
+                <a href="#specs" onClick={(e) => scrollToSection(e, 'specs')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Specifications</a>
+                <a href="#demo" onClick={(e) => scrollToSection(e, 'demo')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Demo</a>
+                <a href="#download" onClick={(e) => scrollToSection(e, 'download')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Download</a>
+                <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">FAQ</a>
+                <a href="#pre-order" onClick={(e) => scrollToSection(e, 'pre-order')} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Pre-order</a>
+              </div>
+            )}
           </div>
           <div className="md:hidden">
             <button
@@ -57,13 +65,19 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">About</a>
-            <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Features</a>
-            <a href="#specs" onClick={(e) => scrollToSection(e, 'specs')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Specifications</a>
-            <a href="#demo" onClick={(e) => scrollToSection(e, 'demo')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Demo</a>
-            <a href="#download" onClick={(e) => scrollToSection(e, 'download')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Download</a>
-            <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">FAQ</a>
-            <a href="#pre-order" onClick={(e) => scrollToSection(e, 'pre-order')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Pre-order</a>
+            {isAdmin ? (
+              <div className="text-white px-3 py-2">Admin Dashboard</div>
+            ) : (
+              <>
+                <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">About</a>
+                <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Features</a>
+                <a href="#specs" onClick={(e) => scrollToSection(e, 'specs')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Specifications</a>
+                <a href="#demo" onClick={(e) => scrollToSection(e, 'demo')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Demo</a>
+                <a href="#download" onClick={(e) => scrollToSection(e, 'download')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Download</a>
+                <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">FAQ</a>
+                <a href="#pre-order" onClick={(e) => scrollToSection(e, 'pre-order')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">Pre-order</a>
+              </>
+            )}
           </div>
         </div>
       )}

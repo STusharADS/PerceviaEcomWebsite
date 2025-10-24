@@ -32,8 +32,16 @@ export default function Specifications(){
             <p className="text-cyan-400 text-xl font-semibold mb-2">{'{Object} {Grid Number}'}</p>
             <p className="text-lg">Distance - haptics (z)</p>
           </div>
-          <div className="flex-shrink-0">
-            <img src="/pcb.png" alt="Percevia PCB Design" className="rounded-lg shadow-lg w-80 h-auto" />
+          <div className="flex-shrink-0 flex flex-col items-center gap-4">
+            <div className="bg-white/10 p-3 rounded-lg shadow-lg ring-2 ring-cyan-500">
+              <img src="/inside.png" alt="Percevia internal layout" className="rounded-md w-80 h-auto block" />
+              <div className="text-sm text-cyan-200 mt-2 text-center">Inside view</div>
+            </div>
+
+            <div className="bg-white/5 p-3 rounded-lg shadow-lg">
+              <img src="/pcb.png" alt="Percevia PCB Design" className="rounded-md w-80 h-auto block" />
+              <div className="text-sm text-cyan-200 mt-2 text-center">PCB layout</div>
+            </div>
           </div>
         </div>
 
@@ -53,34 +61,27 @@ export default function Specifications(){
                 <source src="/streetdemo.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              {/* Volume controls */}
-              <div className="absolute bottom-3 right-3 flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1">
+              {/* Controls rendered below the street demo to avoid overlaying the video */}
+              <div className="mt-3 flex items-center justify-center gap-3">
                 <button
                   type="button"
                   aria-label={muted || volume === 0 ? 'Unmute' : 'Mute'}
-                  className="text-white hover:text-cyan-300"
+                  className="bg-black/60 text-white px-3 py-2 rounded-full"
                   onClick={() => {
                     if (!videoRef.current) return;
                     if (muted || volume === 0) {
-                      changeVolume(0.3); // bring to 0.3
+                      changeVolume(0.3);
                     } else {
-                      changeVolume(-volume); // set to 0
+                      changeVolume(-volume);
                     }
                   }}
                 >
-                  {/* speaker icon */}
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M11 5L6 9H3v6h3l5 4V5z"/>
-                    {!muted && volume > 0 && (<path d="M15.54 8.46a5 5 0 010 7.07M17.65 6.35a8 8 0 010 11.31"/>) }
-                  </svg>
+                  {muted || volume === 0 ? 'Unmute' : 'Mute'}
                 </button>
-                <button type="button" aria-label="Volume down" className="text-white hover:text-cyan-300" onClick={() => changeVolume(-0.1)}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                </button>
+
+                <button type="button" aria-label="Volume down" className="bg-black/60 text-white px-3 py-2 rounded-full" onClick={() => changeVolume(-0.1)}>- Vol</button>
                 <div className="text-xs tabular-nums w-8 text-center">{Math.round(volume*100)}</div>
-                <button type="button" aria-label="Volume up" className="text-white hover:text-cyan-300" onClick={() => changeVolume(0.1)}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                </button>
+                <button type="button" aria-label="Volume up" className="bg-black/60 text-white px-3 py-2 rounded-full" onClick={() => changeVolume(0.1)}>+ Vol</button>
               </div>
             </div>
           </div>

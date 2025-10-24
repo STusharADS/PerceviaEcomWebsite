@@ -6,8 +6,16 @@ export default function ProductSpecs(){
         
         <div className="flex flex-col md:flex-row gap-12 items-start">
           {/* PCB Image */}
-          <div className="flex-shrink-0">
-            <img src="/pcb.png" alt="Percevia PCB Design" className="rounded-lg shadow-lg w-80 h-auto" />
+          <div className="flex-shrink-0 flex flex-col items-center gap-4">
+            <div className="">
+              <img src="/inside.png" alt="Percevia internal layout" className=" w-68 h-auto " />
+              <div className="text-sm text-cyan-200 mt-2 text-center">Inside view</div>
+            </div>
+
+            <div className=" p-3 rounded-lg shadow-lg">
+              <img src="/pcb.png" alt="Percevia PCB Design" className="rounded-md w-64 h-auto block" />
+              <div className="text-sm text-cyan-200 mt-2 text-center">PCB layout</div>
+            </div>
           </div>
           
           {/* Technical Details */}

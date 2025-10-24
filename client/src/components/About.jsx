@@ -3,7 +3,7 @@ export default function About(){
     <section id="about" className="py-20 px-6 bg-white/5 text-white">
       <div className="max-w-6xl mx-auto">
   <h2 className="text-3xl font-bold mb-6 heading-accent neon">About Percevia</h2>
-        <p className="text-lg mb-8">Percevia are AI-powered smart glasses built specifically for people who are <strong>completely blind</strong>. Simple to use, affordable, and designed for everyday independence.</p>
+        <p className="text-lg mb-8">Percevia is an AI-powered smart glasses built specifically for people who are <strong>completely blind</strong>. Simple to use, affordable, and designed for everyday independence.</p>
 
         <ul className="grid md:grid-cols-2 gap-4">
           <li className="flex items-start gap-3 bg-white/6 p-4 rounded-lg">

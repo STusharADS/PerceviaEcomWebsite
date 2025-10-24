@@ -1,9 +1,35 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 export default function RealLifeDemo(){
   const videoRef = useRef(null);
   const [volume, setVolume] = useState(0); // start silent
   const [muted, setMuted] = useState(true);
+  const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false });
+
+  // Play audio when in view, pause when out of view
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (inView) {
+      try {
+        // try to unmute and play
+        v.muted = false;
+        v.volume = volume || 0.5;
+        v.play().catch(() => {
+          // autoplay may be blocked; keep muted state if blocked
+          v.muted = true;
+        });
+        setMuted(false);
+      } catch (e) {
+        // ignore
+      }
+    } else {
+      try {
+        v.pause();
+      } catch {}
+    }
+  }, [inView]);
 
   const changeVolume = (delta) => {
     if (!videoRef.current) return;
@@ -18,13 +44,12 @@ export default function RealLifeDemo(){
   };
 
   return (
-    <section id="demo" className="py-20 px-6">
+    <section id="demo" className="py-20 px-6" ref={ref}>
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-center">
           <div className="relative">
             <video
               ref={videoRef}
-              autoPlay
               loop
               muted={muted}
               playsInline
@@ -34,33 +59,7 @@ export default function RealLifeDemo(){
               <source src="/streetdemo.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="absolute bottom-3 right-3 flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1">
-              <button
-                type="button"
-                aria-label={muted || volume === 0 ? 'Unmute' : 'Mute'}
-                className="text-white hover:text-cyan-300"
-                onClick={() => {
-                  if (!videoRef.current) return;
-                  if (muted || volume === 0) {
-                    changeVolume(0.3);
-                  } else {
-                    changeVolume(-volume);
-                  }
-                }}
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M11 5L6 9H3v6h3l5 4V5z"/>
-                  {!muted && volume > 0 && (<path d="M15.54 8.46a5 5 0 010 7.07M17.65 6.35a8 8 0 010 11.31"/>) }
-                </svg>
-              </button>
-              <button type="button" aria-label="Volume down" className="text-white hover:text-cyan-300" onClick={() => changeVolume(-0.1)}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              </button>
-              <div className="text-xs tabular-nums w-8 text-center">{Math.round(volume*100)}</div>
-              <button type="button" aria-label="Volume up" className="text-white hover:text-cyan-300" onClick={() => changeVolume(0.1)}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              </button>
-            </div>
+            {/* Controls intentionally removed; video auto-plays audio when in view */}
           </div>
         </div>
       </div>

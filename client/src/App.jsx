@@ -10,6 +10,8 @@ import RealLifeDemo from './components/RealLifeDemo'
 import Download from './components/Download'
 import FAQ from './components/FAQ'
 import PreOrder from './components/PreOrder'
+import AdminLogin from './components/AdminLogin'
+import AdminDashboard from './components/AdminDashboard'
 
 function App() {
   const bgAudioRef = useRef(null)
@@ -54,38 +56,49 @@ function App() {
     return () => clearInterval(timer)
   }, [launchDate])
 
+  const toggleAudio = async () => {
+    if (!bgAudioRef.current) return
+    try {
+      if (audioEnabled) {
+        bgAudioRef.current.pause()
+        setAudioEnabled(false)
+      } else {
+        bgAudioRef.current.volume = 0.3
+        await bgAudioRef.current.play()
+        setAudioEnabled(true)
+        setAudioError(false)
+      }
+    } catch (e) {
+      setAudioEnabled(false)
+      setAudioError(true)
+    }
+  }
+
   return (
     <Router>
       <div className="min-h-screen bg-black text-white">
         {/* Global background audio using hero.mp4 (audio track) */}
   <audio ref={bgAudioRef} src="/hero.mp4" loop preload="auto" muted={false} />
-        {!audioEnabled && audioError && (
-          <button
-            onClick={async () => {
-              try {
-                if (bgAudioRef.current) {
-                  bgAudioRef.current.volume = 0.3
-                  await bgAudioRef.current.play()
-                  setAudioEnabled(true)
-                  setAudioError(false)
-                }
-              } catch {}
-            }}
-            className="fixed bottom-4 right-4 z-50 bg-white text-black px-4 py-2 rounded-full shadow hover:bg-gray-200"
-            aria-label="Enable background sound"
-          >
-            Enable sound
-          </button>
-        )}
+        {/* Persistent audio toggle button — toggles between Enable/Disable sound */}
+        <button
+          onClick={toggleAudio}
+          className="fixed bottom-4 right-4 z-50 bg-white text-black px-4 py-2 rounded-full shadow hover:bg-gray-200"
+          aria-pressed={audioEnabled}
+          aria-label={audioEnabled ? 'Disable background sound' : 'Enable background sound'}
+        >
+          {audioEnabled ? 'Disable sound' : 'Enable sound'}
+        </button>
         <Navbar />
         <Routes>
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/" element={
             <>
               <Hero timeLeft={timeLeft} />
               <About />
               <KeyFeatures />
-              <ProductSpecs />
               <RealLifeDemo />
+              <ProductSpecs />
               <Download />
               <FAQ />
               <PreOrder />

@@ -42,23 +42,24 @@ export default function Hero({ timeLeft }) {
 
       {/* Content */}
       <div ref={ref} className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
-        {/* Liquid glass Percevia */}
+        {/* Neon tube percevia like Apple hello */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="liquid-glass text-6xl md:text-8xl"
+          className="neon-tube"
           style={{ marginBottom: '24px' }}
         >
-          PERCEVIA
+          percevia
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 0.85, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl md:text-2xl mb-8 max-w-2xl"
+          className="text-sm md:text-base mb-6 max-w-xl italic text-white/85 leading-relaxed"
+          style={{ maxWidth: '600px' }}
         >
-          Experience Reality Enhanced
+          "The best technology resonates with our biology, turning human nature into the ultimate feature."
         </motion.p>
 
         {/* Countdown Timer */}
@@ -86,17 +87,22 @@ export default function Hero({ timeLeft }) {
           </div>
         </motion.div>
 
-        {/* CTA Button */}
-        <motion.a
-          href="#pre-order"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-200 transition-colors"
-        >
-          Pre-order Now
-        </motion.a>
+        {/* (CTA removed from flow) - replaced by absolute overlay button below */}
       </div>
+
+      {/* Absolute glass CTA placed on top of the video (Apple-like liquid glass) */}
+      <motion.a
+        href="#pre-order"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.7 }}
+        aria-label="Pre-order Now"
+        className="absolute left-1/2 bottom-20 z-20 -translate-x-1/2 inline-flex items-center justify-center px-10 py-4 rounded-full text-lg font-semibold text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_20px_60px_rgba(0,211,242,0.08)] transform-gpu transition-transform duration-200 hover:scale-105"
+        style={{ minWidth: '220px' }}
+      >
+        <span className="relative z-10 text-white">Pre-order Now</span>
+        <span className="absolute inset-0 rounded-full bg-[linear-gradient(90deg,rgba(255,255,255,0.04),rgba(255,255,255,0.12),rgba(255,255,255,0.04))] opacity-10 group-hover:opacity-20 pointer-events-none" />
+      </motion.a>
     </div>
   );
 }
