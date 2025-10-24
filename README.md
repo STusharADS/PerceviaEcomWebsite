@@ -16,8 +16,11 @@ This repository contains the source for the Percevia e-commerce landing and preo
 <img height="500" alt="image" src="https://github.com/user-attachments/assets/7f505987-b177-447d-8c3a-796b74d9ade7" />
 
 
-
+We are storing all the details of users and preorders in mongoDB and displaying them in the admin window.
 The project also includes an app made using Flutter Dart for the completely blind individuals.
+
+<img height="250" alt="image" src="https://github.com/user-attachments/assets/24c7bdfe-9343-4c1e-bb4a-d3b5e0376e34" />
+
 
 ## Tech stack
 
@@ -152,6 +155,7 @@ If you'd like, I can also:
 - Add a sample `.env.local` for the frontend to demonstrate `VITE_API_URL` usage.
 
 Tell me if you want the README adjusted (tone, length, or additional sections) and I will update it.
+
 
 
 
