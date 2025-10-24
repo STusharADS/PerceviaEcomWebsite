@@ -13,6 +13,8 @@ This repository contains the source for the Percevia e-commerce landing and preo
 - User authentication (JWT) and admin-only routes for management actions.
 
 <img height="500" alt="image" src="https://github.com/user-attachments/assets/2d1119b2-e23b-49d6-973b-7f008c407463" />
+<img height="500" alt="image" src="https://github.com/user-attachments/assets/7f505987-b177-447d-8c3a-796b74d9ade7" />
+
 
 
 This README explains how the project is organized, how to run it locally, the environment variables required, and deployment notes.
@@ -150,6 +152,7 @@ If you'd like, I can also:
 - Add a sample `.env.local` for the frontend to demonstrate `VITE_API_URL` usage.
 
 Tell me if you want the README adjusted (tone, length, or additional sections) and I will update it.
+
 
 
 
