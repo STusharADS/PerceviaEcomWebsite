@@ -23,6 +23,11 @@ app.get('/', (req, res) => {
   res.send('Percevia API');
 });
 
+// Simple health check for platform health probes
+app.get('/healthz', (req, res) => {
+  res.status(200).json({ ok: true, uptime: process.uptime() });
+});
+
 app.use('/api/preorders', preorderRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
