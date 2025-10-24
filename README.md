@@ -1,6 +1,7 @@
 
 <img height="250" alt="image" src="https://github.com/user-attachments/assets/bbbdf0a6-1a59-41d5-b3bd-f7038a287fc2" />
 <img  height="250"  alt="image" src="https://github.com/user-attachments/assets/46b5d945-79b1-4c87-ade6-2ff83f3bde40" />
+<></>
 # Percevia E‑com Landing & Preorder (MERN)
 
 This repository contains the source for the Percevia e-commerce landing and preorder site — a MERN stack project (React + Vite frontend, Node/Express + Mongoose backend) that provides:
@@ -148,6 +149,7 @@ If you'd like, I can also:
 - Add a sample `.env.local` for the frontend to demonstrate `VITE_API_URL` usage.
 
 Tell me if you want the README adjusted (tone, length, or additional sections) and I will update it.
+
 
 
 
