@@ -23,7 +23,8 @@ export default function AdminLogin(){
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white p-6">
       <form onSubmit={submit} className="bg-white/5 p-6 rounded-lg w-full max-w-md">
-        <h2 className="text-xl font-bold mb-4">Admin Login</h2>
+  <h2 className="text-xl font-bold mb-4">Admin Login</h2>
+  <div className="text-sm text-gray-300 mb-4">Note: the form fields are pre-filled for convenience during testing.</div>
         {err && <div className="text-red-400 mb-2">{err}</div>}
         <label className="block text-sm mb-1 text-white">Email</label>
         <input value={email} onChange={(e)=>setEmail(e.target.value)} className="w-full p-3 rounded mb-2 text-white placeholder-gray-400 bg-[#222]" style={{caretColor:'#fff'}} />

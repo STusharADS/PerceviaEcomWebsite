@@ -35,8 +35,9 @@ export default function PreOrder() {
   }
 
   return (
-  <section id="pre-order" className="py-20 px-6 max-w-4xl mx-auto text-center bg-[#0D0D0D]">
-      <h2 className="text-3xl font-bold mb-4 heading-accent neon">Pre order</h2>
+  <section id="pre-order" className="py-20 px-6 bg-[#0D0D0D]">
+      <div className="max-w-4xl mx-auto">
+      <h2 className="text-3xl font-bold mb-4 heading-accent neon text-left">Pre order</h2>
 
       <div className="mb-6">
         <div className="max-w-md mx-auto bg-white/5 p-4 rounded-lg">
@@ -71,6 +72,7 @@ export default function PreOrder() {
           {status.success === false && <div className="text-red-400 mt-2">{status.message}</div>}
         </form>
       )}
+      </div>
     </section>
   );
 }

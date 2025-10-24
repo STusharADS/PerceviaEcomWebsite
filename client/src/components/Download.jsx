@@ -50,7 +50,7 @@ export default function Download(){
     <section id="download" className="py-20 px-6 bg-[#0D0D0D]">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
         <div>
-          <h2 className="text-3xl font-bold mb-13 heading-accent neon">Download App</h2>
+          <h2 className="text-3xl font-bold mb-13 heading-accent neon text-left">Download App</h2>
 
           <p className="mb-8">The Android app is built specifically for completely blind people. The app works as a standalone experience, and it can also be paired with the glasses to enhance the glasses’ capabilities.</p>
 

@@ -21,7 +21,7 @@ export default function Specifications(){
   return (
     <section id="specs" className="py-20 px-6 bg-black text-white">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-6 text-center">How Does It Work?</h2>
+  <h2 className="text-3xl font-bold mb-6 text-left">How Does It Work?</h2>
 
         {/* Two column layout: Text on left, PCB on right */}
         <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
@@ -87,7 +87,7 @@ export default function Specifications(){
           </div>
         </div>
 
-        <h3 className="text-2xl font-bold mb-6 text-center">Key Features</h3>
+  <h3 className="text-2xl font-bold mb-6 text-left">Key Features</h3>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
             {title: 'Object Detection & 9-Grid Spatial Awareness', text: 'YOLOv11 + YOLO-E identifies 235+ objects. 3x3 grid with audio cues for precise location.', icon: (

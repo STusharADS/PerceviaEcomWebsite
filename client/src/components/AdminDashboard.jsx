@@ -74,78 +74,89 @@ export default function AdminDashboard(){
           {/* Analytics: Age histogram and city map */}
           {items.length > 0 && (
             <div className="mb-6 grid md:grid-cols-2 gap-6">
-              {/* Age histogram */}
+              {/* Age bar chart */}
               <div className="bg-white/5 p-4 rounded">
                 <h3 className="font-semibold mb-3">Age distribution</h3>
                 {(() => {
-                  const buckets = { '0-17':0, '18-24':0, '25-34':0, '35-44':0, '45-54':0, '55-64':0, '65+':0 };
+                  const buckets = [
+                    { key: '0-17', min: 0, max: 17 },
+                    { key: '18-24', min: 18, max: 24 },
+                    { key: '25-34', min: 25, max: 34 },
+                    { key: '35-44', min: 35, max: 44 },
+                    { key: '45-54', min: 45, max: 54 },
+                    { key: '55-64', min: 55, max: 64 },
+                    { key: '65+', min: 65, max: 200 }
+                  ];
+                  const counts = buckets.map(b => 0);
                   items.forEach(it => {
                     const a = Number(it.age);
                     if (!isNaN(a)) {
-                      if (a < 18) buckets['0-17']++;
-                      else if (a <= 24) buckets['18-24']++;
-                      else if (a <= 34) buckets['25-34']++;
-                      else if (a <= 44) buckets['35-44']++;
-                      else if (a <= 54) buckets['45-54']++;
-                      else if (a <= 64) buckets['55-64']++;
-                      else buckets['65+']++;
+                      const idx = buckets.findIndex(b => a >= b.min && a <= b.max);
+                      if (idx >= 0) counts[idx]++;
                     }
                   });
-                  const max = Math.max(...Object.values(buckets), 1);
+                  const max = Math.max(...counts, 1);
+                  const width = 280; // svg width
+                  const height = 140; // svg height
+                  const barW = Math.floor((width - 20) / counts.length) - 6;
                   return (
-                    <div>
-                      {Object.entries(buckets).map(([k,v]) => (
-                        <div key={k} className="mb-2">
-                          <div className="flex items-center justify-between text-sm mb-1"><div>{k}</div><div className="text-gray-300">{v}</div></div>
-                          <div className="h-3 bg-white/10 rounded overflow-hidden">
-                            <div className="h-3 bg-cyan-400" style={{width: `${Math.round((v/max)*100)}%`}} />
-                          </div>
-                        </div>
-                      ))}
+                    <div className="overflow-x-auto">
+                      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="block">
+                        <rect x="0" y="0" width={width} height={height} fill="transparent" />
+                        {counts.map((c, i) => {
+                          const x = 10 + i * (barW + 6);
+                          const h = Math.round((c / max) * (height - 40));
+                          const y = height - h - 20;
+                          return (
+                            <g key={i}>
+                              <rect x={x} y={y} width={barW} height={h} fill="#01D3F2" rx="3" />
+                              <text x={x + barW / 2} y={y - 4} fontSize="10" fill="#fff" textAnchor="middle">{c}</text>
+                              <text x={x + barW / 2} y={height - 6} fontSize="10" fill="#aaa" textAnchor="middle">{buckets[i].key}</text>
+                            </g>
+                          )
+                        })}
+                        {/* axis line */}
+                        <line x1="8" y1={height - 20} x2={width - 8} y2={height - 20} stroke="#333" strokeWidth="1" />
+                      </svg>
                     </div>
                   )
                 })()}
               </div>
 
-              {/* City map (approx) */}
+              {/* City locations: show top cities as a horizontal bar chart (more reliable than the map) */}
               <div className="bg-white/5 p-4 rounded">
-                <h3 className="font-semibold mb-3">City locations (approx)</h3>
+                <h3 className="font-semibold mb-3">City distribution (top cities)</h3>
                 {(() => {
                   const counts = {};
-                  items.forEach(it => { const c = (it.city || '').trim().toLowerCase(); if (c) counts[c] = (counts[c] || 0) + 1; });
-                  const cityCoords = {
-                    delhi: {x: 62, y: 18}, mumbai: {x: 36, y: 64}, bengaluru: {x: 58, y: 76}, chennai: {x: 72, y: 82}, kolkata: {x: 86, y: 36}, hyderabad: {x: 57, y: 64}, pune: {x: 38, y: 72}, ahmedabad: {x: 30, y: 46}, jaipur: {x: 44, y: 36}, lucknow: {x: 64, y: 40}
-                  };
-                  const mapped = Object.entries(counts).map(([city,count]) => ({ city, count, coord: cityCoords[city] || null }));
-                  const known = mapped.filter(m => m.coord);
-                  const unknown = mapped.filter(m => !m.coord);
+                  items.forEach(it => { const c = (it.city || '').trim(); if (c) counts[c] = (counts[c] || 0) + 1; });
+                  const entries = Object.entries(counts).map(([city,count]) => ({ city, count }));
+                  if (entries.length === 0) return <div className="text-sm text-gray-300">No city data available.</div>;
+                  // sort descending
+                  entries.sort((a,b) => b.count - a.count);
+                  const top = entries.slice(0, 8);
+                  const other = entries.slice(8).reduce((s,e) => s + e.count, 0);
+                  const max = Math.max(...entries.map(e => e.count), 1);
                   return (
-                    <div className="flex gap-4">
-                      <svg viewBox="0 0 100 100" className="w-56 h-40 bg-black/40 rounded">
-                        {/* simple India silhouette placeholder */}
-                        <rect x="0" y="0" width="100" height="100" fill="transparent" />
-                        {known.map((m, i) => (
-                          <g key={m.city} transform={`translate(${m.coord.x}, ${m.coord.y})`}>
-                            <circle r={Math.max(3, Math.min(12, 4 + m.count))} fill="#01D3F2" stroke="#fff" strokeWidth="0.5" />
-                            <text x={0} y={-6} fontSize="4" fill="#fff" textAnchor="middle">{m.count > 1 ? m.count : ''}</text>
-                            <title>{`${m.city} — ${m.count}`}</title>
-                          </g>
-                        ))}
-                      </svg>
-                      <div className="flex-1">
-                        {unknown.length > 0 ? (
-                          <div>
-                            <div className="text-sm mb-2">Cities not plotted (no coordinate match):</div>
-                            <ul className="text-sm space-y-1">
-                              {unknown.map(u => (
-                                <li key={u.city} className="flex items-center gap-2"><span className="inline-block bg-white/10 text-xs px-2 py-1 rounded">{u.count}</span> <span className="capitalize">{u.city}</span></li>
-                              ))}
-                            </ul>
+                    <div className="space-y-3">
+                      {top.map(e => (
+                        <div key={e.city} className="flex items-center gap-3">
+                          <div className="w-32 text-sm text-gray-200 truncate">{e.city}</div>
+                          <div className="flex-1 bg-black/20 rounded h-4 overflow-hidden">
+                            <div className="h-4 bg-[#01D3F2]" style={{ width: `${Math.round((e.count / max) * 100)}%` }} />
                           </div>
-                        ) : (
-                          <div className="text-sm text-gray-300">All cities plotted on map (approx).</div>
-                        )}
-                      </div>
+                          <div className="w-10 text-right text-sm text-gray-200">{e.count}</div>
+                        </div>
+                      ))}
+                      {other > 0 && (
+                        <div className="flex items-center gap-3">
+                          <div className="w-32 text-sm text-gray-200">Other</div>
+                          <div className="flex-1 bg-black/20 rounded h-4 overflow-hidden">
+                            <div className="h-4 bg-[#01D3F2]" style={{ width: `${Math.round((other / max) * 100)}%` }} />
+                          </div>
+                          <div className="w-10 text-right text-sm text-gray-200">{other}</div>
+                        </div>
+                      )}
+                      <div className="text-xs text-gray-400 mt-2">Showing top {top.length} cities. City names are displayed as entered and not normalized.</div>
                     </div>
                   )
                 })()}

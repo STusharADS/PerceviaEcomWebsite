@@ -52,6 +52,7 @@ export default function RealLifeDemo(){
   return (
     <section id="demo" className="py-20 px-6 bg-[#0D0D0D]" ref={ref}>
       <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold mb-6 heading-accent neon text-left">Demo</h2>
         <div className="flex justify-center">
           <div className="relative">
             <div onMouseEnter={() => setShowControls(true)} onMouseLeave={() => { if (!(typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0))) setShowControls(false); }}>

@@ -2,7 +2,7 @@ export default function ProductSpecs(){
   return (
   <section id="specs" className="py-20 px-6 bg-black text-white">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-6 text-center heading-accent neon">Specifications</h2>
+  <h2 className="text-3xl font-bold mb-6 heading-accent neon text-left">Specifications</h2>
         
         <div className="flex flex-col md:flex-row gap-12 items-start">
           {/* PCB Image */}
