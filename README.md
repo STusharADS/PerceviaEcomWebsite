@@ -1,7 +1,7 @@
 
 
 
-https://github.com/user-attachments/assets/02cf72f2-3922-4d9a-8d4e-6d2dffa38935
+https://github.com/user-attachments/assets/faa04146-49d7-4296-b722-805574663b3d
 
 <img height="250" alt="image" src="https://github.com/user-attachments/assets/bbbdf0a6-1a59-41d5-b3bd-f7038a287fc2" />
 <img  height="250"  alt="image" src="https://github.com/user-attachments/assets/46b5d945-79b1-4c87-ade6-2ff83f3bde40" />
@@ -159,6 +159,7 @@ If you'd like, I can also:
 - Add a sample `.env.local` for the frontend to demonstrate `VITE_API_URL` usage.
 
 Tell me if you want the README adjusted (tone, length, or additional sections) and I will update it.
+
 
 
 
