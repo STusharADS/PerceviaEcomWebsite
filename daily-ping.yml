@@ -1,0 +1,48 @@
+# Simulated daily request to your render project so that the service doesn't go down
+name: Daily render ping
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight UTC
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  curl-website:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run cURL on Website
+        run: curl -I https://perceviaecomwebsite.onrender.com
+
+
+
+
+
+
+
+
+name: Keep Render service alive
+
+# Schedule: every 10 minutes (*/10) and allow manual run
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping health endpoint (using secret WEBSITE_URL)
+        env:
+          TARGET_URL: "https://perceviaecomwebsite.onrender.com"
+        run: |
+          if [ -z "$TARGET_URL" ]; then
+            echo "Environment variable WEBSITE_URL is not set. Exiting with non-zero status."
+            exit 1
+          fi
+          echo "Pinging $TARGET_URL/healthz"
+          # Try HEAD first, then GET; retry up to 3 times; fail if unreachable
+          curl -fsS --retry 3 --max-time 10 -I "$TARGET_URL/healthz" || \
+          curl -fsS --retry 3 --max-time 10 "$TARGET_URL/healthz" -o /dev/null || \
+          (echo "Ping failed" && exit 1)
