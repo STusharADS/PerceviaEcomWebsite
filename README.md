@@ -29,6 +29,8 @@ We are storing all the details of users and preorders in mongoDB and displaying 
 - Backend: Node.js, Express, Mongoose (MongoDB), dotenv, bcrypt, jsonwebtoken (JWT), Render.
 - Database: MongoDB (Atlas recommended in production).
 
+<img width="1058" height="398" alt="image" src="https://github.com/user-attachments/assets/2f1f4ce9-87dd-4606-8308-3986a1ee44bc" />
+
 
 
 
