@@ -3,7 +3,7 @@
 
 https://github.com/user-attachments/assets/faa04146-49d7-4296-b722-805574663b3d
 
-
+Note: I have used render to deploy backend and written a yml file to automatically ping every 10 minutes  --> but sometimes u might face server error while trying to access the admin dashboard
 <div></div>
 <div></div>
 ## Percevia E‑com Landing & Preorder (MERN)
@@ -158,6 +158,7 @@ If you'd like, I can also:
 - Add a sample `.env.local` for the frontend to demonstrate `VITE_API_URL` usage.
 
 Tell me if you want the README adjusted (tone, length, or additional sections) and I will update it.
+
 
 
 
